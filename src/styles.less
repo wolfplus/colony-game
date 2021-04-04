@@ -1,0 +1,120 @@
+/* Vars 
+------------------*/
+@pathAssets: "./assets";
+@pathFont: "@{pathAssets}/fonts";
+
+/* Core functions 
+------------------*/
+.gradientLinear(@background, @deg, @color1, @color2) {
+	background: @background -moz-linear-gradient(@deg,  @color1, @color2);
+	background: @background -webkit-linear-gradient(@deg,  @color1, @color2);
+	background: @background linear-gradient(@deg,  @color1, @color2);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="@color1",endColorstr="@color2",GradientType=1);
+}
+
+
+/* Animation 
+------------------*/
+@keyframes startNavigation {
+    0%   {text-shadow: 0 0 50px #fff, 0 0 30px rgba(46, 107, 193, 1);}
+    25% {text-shadow: 0 0 60px #fff, -10px 0 35px rgba(46, 107, 193, 1);}
+    50% {text-shadow: 0 0 70px #fff, 5px 2px 35px rgba(46, 107, 193, 1);}
+    70% {text-shadow: 0 0 80px #fff, -6px -6px 40px rgba(46, 107, 193, 1);}
+    85% {text-shadow: 0 0 60px #fff, 10px 0 40px rgba(46, 107, 193, 1);}
+    to {text-shadow: 0 0 50px #fff, 0 0 30px rgba(46, 107, 193, 1);}
+}
+
+/* Fonts 
+------------------*/
+@font-face{
+	font-family:Acrom;
+	src:url('@{pathFont}/Acrom-Medium.woff') format('woff');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(ellipse at bottom, #1C2837 0%, #050608 100%);
+    background-attachment:fixed;
+    color: #fff;
+    font: 14px Arial, sans-serif;
+}
+
+.wrap_game {
+    position: absolute;
+    z-index: 2;
+    &.starting {
+        padding: 100px;
+        .navigation {
+            position: relative;
+            right: 30px;
+            width: 25%;
+            margin: 0;
+        }
+        .infoGame {
+            width: 55%;
+        }
+    }
+    &.core-game {
+        .navigation {
+            nav {
+                ul {
+                    li {
+                        margin-bottom: 3px;
+                        padding: 3px;
+                        width: 95%;
+                        a {
+                            font-size: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .navigation {
+        nav {
+            ul {
+                padding: 3px;
+                border: 3px solid #fff;
+                li {
+                    display: inline-block;
+                    margin-bottom: 10px;
+                    padding: 10px;
+                    width: 100%;
+                    list-style: none;
+                    a {
+                        display: block;
+                        padding: 5px;
+                        background:rgba(46, 107, 193, 0.1);
+                        color: #fff;
+                        text-decoration: none;
+                        text-transform: uppercase;
+                        font-family: Acrom;
+                        font-size: 30px;
+                        animation: 2s ease-in-out infinite startNavigation;
+                    }
+                }
+                h1 {
+                    margin: 0;
+                    padding: 4px;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+            }
+        }
+        span.version {
+            font-size: 11px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+    }
+}
+
+.engine-wrapper {
+    canvas#renderCanvas {
+        position: absolute;
+        top: 0;
+        left:0;
+        width: 100%;
+        height: 100%;
+    }
+}
